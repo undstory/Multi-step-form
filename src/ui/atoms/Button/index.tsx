@@ -1,9 +1,10 @@
+import { CustomButton } from "./style";
 import { ButtonProps } from "./types";
 
 const Button: React.FC<ButtonProps> = ({ children, ...rest }) => (
-    <button type="button" { ...rest }>
-        { children }
-    </button>
+    <CustomButton type="button" {...rest}>
+        {children}
+    </CustomButton>
 )
 
 export default Button;

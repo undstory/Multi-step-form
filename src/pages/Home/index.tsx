@@ -46,30 +46,41 @@ const Home: React.FC<HomeProps> = ({ mediaIsPhone }) => {
 
     return (
         <Container
+            alignitems='center'
             background="lightBlue"
             height="100vh"
-            width="100%"
+            flexdirection={!mediaIsPhone ? "row" : "column"}
+            justifycontent={!mediaIsPhone ? 'center' : "flex-start"}
             nopadding="true"
-            justifycontent='center'
-            alignitems='center'
+            width="100%"
         >
-            <MainContainer
-                background="alabaster"
-                minwidth="700px"
-                borderradius='9px'
-                height="480px"
-                justifycontent='space-between'
-            >
-
+            {mediaIsPhone ? (
                 <Sidebar
                     activeStep={selectedStep === 4 ? (setSelectedStep(3)) : selectedStep}
                 />
+            ) : (
+                null
+            )}
+            <MainContainer
+                background="alabaster"
+                borderradius='9px'
+                height={!mediaIsPhone ? "480px" : "auto"}
+                justifycontent='space-between'
+                width={!mediaIsPhone ? "700px" : "300px"}
+            >
+                {!mediaIsPhone ? (
+                    <Sidebar
+                        activeStep={selectedStep === 4 ? (setSelectedStep(3)) : selectedStep}
+                    />
+                ) : (
+                    null
+                )}
                 {selectedStep !== 4 && step !== undefined ? (
                     <Step
-                        step={step}
                         handleStep={handleStep}
-                        setSelectedStep={setSelectedStep}
                         selectedStep={selectedStep}
+                        setSelectedStep={setSelectedStep}
+                        step={step}
                     />
                 ) : (
                     <ThankYou />

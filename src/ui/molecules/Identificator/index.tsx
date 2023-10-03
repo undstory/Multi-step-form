@@ -31,11 +31,12 @@ const steps = [
 ]
 
 const Identyficator: React.FC<IdentyficatorProps> = ({
-    activeStep
+    activeStep,
+    mediaIsPhone
 }) => (
     <Container
-        flexdirection="column"
-        gap="25px"
+        flexdirection={!mediaIsPhone ? "column" : "row"}
+        gap={!mediaIsPhone ? "25px" : "15px"}
         padding="30px"
     >
         {steps?.map(step => {
@@ -49,8 +50,8 @@ const Identyficator: React.FC<IdentyficatorProps> = ({
                     gap="10px"
                 >
                     <IdentyficatorWrapper
-                        width="28px"
-                        height="28px"
+                        width={!mediaIsPhone ? "28px" : "35px"}
+                        height={!mediaIsPhone ? "28px" : "35px"}
                         borderradius="50%"
                         justifycontent="center"
                         alignitems="center"
@@ -62,26 +63,28 @@ const Identyficator: React.FC<IdentyficatorProps> = ({
                             size="12px"
                         >{step.number}</Text>
                     </IdentyficatorWrapper>
-                    <Container
-                        flexdirection="column"
-                        gap="3px"
-                    >
-                        <Text
-                            size="10px"
-                            color="alabaster"
-                            opacity={0.8}
+                    {!mediaIsPhone ? (
+                        <Container
+                            flexdirection="column"
+                            gap="3px"
                         >
-                            {step.name.toUpperCase()}
-                        </Text>
-                        <Text
-                            color="alabaster"
-                            size="11px"
-                            weight="bold"
-                            letterSpacing="1px"
-                        >
-                            {step.title.toUpperCase()}
-                        </Text>
-                    </Container>
+                            <Text
+                                size="10px"
+                                color="alabaster"
+                                opacity={0.8}
+                            >
+                                {step.name.toUpperCase()}
+                            </Text>
+                            <Text
+                                color="alabaster"
+                                size="11px"
+                                weight="bold"
+                                letterSpacing="1px"
+                            >
+                                {step.title.toUpperCase()}
+                            </Text>
+                        </Container>
+                    ) : null}
                 </Container>
             )
         }
