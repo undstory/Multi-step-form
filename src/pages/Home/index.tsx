@@ -4,6 +4,8 @@ import Step from "../../components/Step";
 import ThankYou from "../../components/ThankYou";
 import Container from "../../ui/atoms/Container";
 import { withMediaQueries } from "../../ui/hoc/withMediaQueries";
+import ButtonsContainer from "../../ui/molecules/ButtonsContainer";
+
 import { MainContainer } from "../../utils/styles/style";
 
 export type StepType = {
@@ -76,15 +78,21 @@ const Home: React.FC<HomeProps> = ({ mediaIsPhone }) => {
                     null
                 )}
                 {selectedStep !== 4 && step !== undefined ? (
-                    <Step
-                        handleStep={handleStep}
-                        selectedStep={selectedStep}
-                        setSelectedStep={setSelectedStep}
-                        step={step}
-                    />
+                    <Container flexdirection="column" width="100%" padding="40px 40px 20px" justifycontent="space-between">
+                        <Step
+                            step={step}
+                        />
+                        <ButtonsContainer
+                            step={step}
+                            handleStep={handleStep}
+                            selectedStep={selectedStep}
+                            setSelectedStep={setSelectedStep}
+                        />
+                    </Container>
                 ) : (
                     <ThankYou />
                 )}
+
             </MainContainer>
         </Container>
     )

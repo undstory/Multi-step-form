@@ -10,7 +10,8 @@ export const SidebarWrapper = styled(Container)`
         background-repeat: no-repeat;
         background-position: 0 0;
         background-size: contain;
-        flex-basis: 33.33%;
+        width: 350px;
+        /* flex-basis: 33.33%; */
     `}
   ${media.lessThan('t')`
         background-image: url(${stepSvgUrlMobile});
