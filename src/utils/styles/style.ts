@@ -4,9 +4,10 @@ import { media } from '../../ui/themes/media'
 
 export const MainContainer = styled(Container)`
   ${media.lessThan('t')`
-        padding:  50px 30px;
+        padding:  30px 20px;
         position: absolute;
         top: 95px;
+        margin: 0 20px;
     `}
 
   ${media.greaterThan('t')`

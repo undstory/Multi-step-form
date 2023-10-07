@@ -68,7 +68,7 @@ const Home: React.FC<HomeProps> = ({ mediaIsPhone }) => {
                 borderradius='9px'
                 height={!mediaIsPhone ? "480px" : "auto"}
                 justifycontent='space-between'
-                width={!mediaIsPhone ? "700px" : "300px"}
+                width={!mediaIsPhone ? "700px" : "auto"}
             >
                 {!mediaIsPhone ? (
                     <Sidebar
@@ -78,7 +78,12 @@ const Home: React.FC<HomeProps> = ({ mediaIsPhone }) => {
                     null
                 )}
                 {selectedStep !== 4 && step !== undefined ? (
-                    <Container flexdirection="column" width="100%" padding="40px 40px 20px" justifycontent="space-between">
+                    <Container
+                        flexdirection="column"
+                        width="100%"
+                        padding={!mediaIsPhone ? "40px 40px 20px" : 0}
+                        justifycontent="space-between"
+                    >
                         <Step
                             step={step}
                         />

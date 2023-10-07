@@ -33,5 +33,5 @@ export type ContainerProps = {
   height?: string | number
   borderradius?: string
   margin?: string
-  padding?: string
+  padding?: string | number
 }
