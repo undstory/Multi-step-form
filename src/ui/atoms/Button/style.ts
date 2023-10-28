@@ -10,8 +10,8 @@ export const CustomButton = styled.button<ButtonProps>`
   font-weight: ${({ theme: { fonts } }) => fonts.medium};
   min-width: 80px;
   margin: ${({ margin }) => margin};
-  margin-left: ${({ marginLeft }) => marginLeft};
-  margin-right: ${({ marginRight }) => marginRight};
+  margin-left: ${({ marginleft }) => marginleft};
+  margin-right: ${({ marginright }) => marginright};
 
   ${({ variant }) =>
     variant === 'accent' &&

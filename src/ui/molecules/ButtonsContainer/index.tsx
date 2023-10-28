@@ -42,7 +42,7 @@ const ButtonsContainer: React.FC<ButtonsContainerProps> = ({
         >
             {id !== 0 ? (
                 <Button
-                    marginLeft={mediaIsPhone ? "20px" : 0}
+                    marginleft={mediaIsPhone ? "20px" : 0}
                     onClick={() => handlePreviousStep(selectedStep)}
                     variant="transparency"
                 >
@@ -51,7 +51,7 @@ const ButtonsContainer: React.FC<ButtonsContainerProps> = ({
             ) : null}
             {id !== 3 ? (
                 <Button
-                    marginRight={mediaIsPhone ? "20px" : 0}
+                    marginright={mediaIsPhone ? "20px" : 0}
                     onClick={() => handleNextStep(selectedStep)}
                     variant="accent"
                 >
@@ -59,7 +59,7 @@ const ButtonsContainer: React.FC<ButtonsContainerProps> = ({
                 </Button>
             ) : (
                 <Button
-                    marginRight={mediaIsPhone ? "20px" : 0}
+                    marginright={mediaIsPhone ? "20px" : 0}
                     onClick={() => handleNextStep(selectedStep)}
                     variant="confirm"
                 >

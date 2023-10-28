@@ -1,10 +1,11 @@
 import Button from "../../ui/atoms/Button";
 import Container from "../../ui/atoms/Container";
 import Text from "../../ui/atoms/Text"
+import { withMediaQueries } from "../../ui/hoc/withMediaQueries";
 import { StepWrapper } from "./style";
 import { StepProps } from "./types";
 
-const Step: React.FC<StepProps> = ({ step }) => {
+const Step: React.FC<StepProps> = ({ mediaIsPhone, step }) => {
 
     const { title, subtitle } = step;
 
@@ -19,12 +20,15 @@ const Step: React.FC<StepProps> = ({ step }) => {
                 alignitems="flex-start"
             >
                 <Text
-                    size="20px"
+                    size="22px"
+                    weight="bold"
+                    color="marineBlue"
+                    marginbottom="10px"
                 >
                     {title}
                 </Text>
                 <Text
-                    size="12px"
+                    size={!mediaIsPhone ? "12px" : "15px"}
                 >
                     {subtitle}
                 </Text>
@@ -36,4 +40,4 @@ const Step: React.FC<StepProps> = ({ step }) => {
     )
 }
 
-export default Step;
+export default withMediaQueries(Step);
