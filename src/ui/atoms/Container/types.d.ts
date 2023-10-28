@@ -32,6 +32,6 @@ export type ContainerProps = {
   hasshadow?: boolean
   height?: string | number
   borderradius?: string
-  margin?: string
+  margin?: string | any
   padding?: string | number
 }

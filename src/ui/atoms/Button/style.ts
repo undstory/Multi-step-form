@@ -1,6 +1,4 @@
 import styled, { css } from 'styled-components'
-import { media } from '../../themes/media'
-import { TextProps } from '../Text/types'
 import { ButtonProps } from './types'
 
 export const CustomButton = styled.button<ButtonProps>`
@@ -11,6 +9,9 @@ export const CustomButton = styled.button<ButtonProps>`
   border-radius: 5px;
   font-weight: ${({ theme: { fonts } }) => fonts.medium};
   min-width: 80px;
+  margin: ${({ margin }) => margin};
+  margin-left: ${({ marginLeft }) => marginLeft};
+  margin-right: ${({ marginRight }) => marginRight};
 
   ${({ variant }) =>
     variant === 'accent' &&
@@ -25,6 +26,7 @@ export const CustomButton = styled.button<ButtonProps>`
     css`
       background-color: ${({ theme: { colors } }) => colors.purplishBlue};
       color: ${({ theme: { colors } }) => colors.magnolia};
+      margin-left: auto;
     `};
 
   ${({ variant }) =>

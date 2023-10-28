@@ -10,8 +10,8 @@ import { MainContainer } from "../../utils/styles/style";
 
 export type StepType = {
     id: number,
-    title: string,
-    subtitle: string
+    subtitle: string,
+    title: string
 }
 
 const steps: StepType[] = [{
@@ -50,9 +50,9 @@ const Home: React.FC<HomeProps> = ({ mediaIsPhone }) => {
         <Container
             alignitems='center'
             background="lightBlue"
-            height="100vh"
             flexdirection={!mediaIsPhone ? "row" : "column"}
-            justifycontent={!mediaIsPhone ? 'center' : "flex-start"}
+            height="100vh"
+            justifycontent={!mediaIsPhone ? 'center' : "space-between"}
             nopadding="true"
             width="100%"
         >
@@ -80,25 +80,35 @@ const Home: React.FC<HomeProps> = ({ mediaIsPhone }) => {
                 {selectedStep !== 4 && step !== undefined ? (
                     <Container
                         flexdirection="column"
-                        width="100%"
-                        padding={!mediaIsPhone ? "40px 40px 20px" : 0}
                         justifycontent="space-between"
+                        padding={!mediaIsPhone ? "40px 40px 20px" : 0}
+                        width="100%"
                     >
                         <Step
                             step={step}
                         />
-                        <ButtonsContainer
-                            step={step}
-                            handleStep={handleStep}
-                            selectedStep={selectedStep}
-                            setSelectedStep={setSelectedStep}
-                        />
+                        {!mediaIsPhone ? (
+                            <ButtonsContainer
+                                handleStep={handleStep}
+                                selectedStep={selectedStep}
+                                setSelectedStep={setSelectedStep}
+                                step={step}
+                            />
+                        ) : null}
                     </Container>
                 ) : (
                     <ThankYou />
                 )}
 
             </MainContainer>
+            {selectedStep !== 4 && step !== undefined && mediaIsPhone ? (
+                <ButtonsContainer
+                    handleStep={handleStep}
+                    selectedStep={selectedStep}
+                    setSelectedStep={setSelectedStep}
+                    step={step}
+                />
+            ) : null}
         </Container>
     )
 }
