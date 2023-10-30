@@ -2,12 +2,15 @@ import Button from "../../ui/atoms/Button";
 import Container from "../../ui/atoms/Container";
 import Text from "../../ui/atoms/Text"
 import { withMediaQueries } from "../../ui/hoc/withMediaQueries";
+import { useMultiStepForm } from "../../utils/hooks/multiStepForm";
+import StepOne from "../Steps/StepOne";
 import { StepWrapper } from "./style";
 import { StepProps } from "./types";
 
 const Step: React.FC<StepProps> = ({ mediaIsPhone, step }) => {
 
     const { title, subtitle } = step;
+
 
     return (
         <StepWrapper
@@ -28,12 +31,15 @@ const Step: React.FC<StepProps> = ({ mediaIsPhone, step }) => {
                     {title}
                 </Text>
                 <Text
+                    paddingbottom="18px"
                     size={!mediaIsPhone ? "12px" : "15px"}
                 >
                     {subtitle}
                 </Text>
-                <Container>
-                    Form
+                <Container
+                    width="100%"
+                >
+                    <StepOne />
                 </Container>
             </Container>
         </StepWrapper>

@@ -22,6 +22,7 @@ const ThankYou: React.FC<ThankYouProps> = ({ mediaIsPhone }) => (
             weight="bold"
             color="marineBlue"
             marginbottom="10px"
+            paddingtop="20px"
         >Thank you!</Text>
         <CustomText
             size={!mediaIsPhone ? "12px" : "15px"}
