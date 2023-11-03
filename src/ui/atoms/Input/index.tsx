@@ -1,10 +1,9 @@
-import Container from "../Container";
 import Text from "../Text";
 import { ActiveField, ErrorField, InactiveField, InputField, LabelContainer, SuccessField } from "./style";
 import { InputProps, InputState } from "./types";
 
 const getInputVariant = (
-    inputStates: InputState = 'inactive'
+    inputStates: InputState
 ) =>
 ({
     active: ActiveField,
@@ -14,7 +13,7 @@ const getInputVariant = (
 }[inputStates]);
 
 const Input: React.FC<InputProps> = ({
-    helpText = "This is help text",
+    helpText,
     id,
     isValid,
     label,
@@ -33,17 +32,17 @@ const Input: React.FC<InputProps> = ({
             >
                 <LabelContainer>
                     <Text
+                        color="marineBlue"
                         size="11px"
                         weight="medium"
-                        color="marineBlue"
                     >
                         {label}
                     </Text>
                     {helpText && (
                         <Text
+                            color="strawberryRed"
                             size="11px"
                             weight="medium"
-                            color="strawberryRed"
                         >
                             {helpText}
                         </Text>

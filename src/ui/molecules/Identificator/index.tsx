@@ -45,22 +45,23 @@ const Identyficator: React.FC<IdentyficatorProps> = ({
                 activeIdentyficator = true
             }
             return (
-                <Container key={step.id}
+                <Container
                     alignitems="center"
                     gap="10px"
+                    key={step.id}
                 >
                     <IdentyficatorWrapper
-                        width={!mediaIsPhone ? "28px" : "35px"}
-                        height={!mediaIsPhone ? "28px" : "35px"}
-                        borderradius="50%"
-                        justifycontent="center"
-                        alignitems="center"
                         active={activeIdentyficator ? "true" : "false"}
+                        alignitems="center"
+                        borderradius="50%"
+                        height={!mediaIsPhone ? "28px" : "35px"}
+                        justifycontent="center"
+                        width={!mediaIsPhone ? "28px" : "35px"}
                     >
                         <Text
                             color={activeIdentyficator ? "marineBlue" : "alabaster"}
-                            weight={activeIdentyficator ? "bold" : "regular"}
                             size="12px"
+                            weight={activeIdentyficator ? "bold" : "regular"}
                         >{step.number}</Text>
                     </IdentyficatorWrapper>
                     {!mediaIsPhone ? (
@@ -69,17 +70,17 @@ const Identyficator: React.FC<IdentyficatorProps> = ({
                             gap="3px"
                         >
                             <Text
-                                size="10px"
                                 color="alabaster"
                                 opacity={0.8}
+                                size="10px"
                             >
                                 {step.name.toUpperCase()}
                             </Text>
                             <Text
                                 color="alabaster"
+                                letterSpacing="1px"
                                 size="11px"
                                 weight="bold"
-                                letterSpacing="1px"
                             >
                                 {step.title.toUpperCase()}
                             </Text>

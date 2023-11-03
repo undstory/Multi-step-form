@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import Button from "../../ui/atoms/Button";
 import Container from "../../ui/atoms/Container";
 import Text from "../../ui/atoms/Text"
@@ -8,6 +9,8 @@ import { StepWrapper } from "./style";
 import { StepProps } from "./types";
 
 const Step: React.FC<StepProps> = ({ mediaIsPhone, step }) => {
+
+    // const { name, email, phone } = useSelector((state: any) => state.);
 
     const { title, subtitle } = step;
 

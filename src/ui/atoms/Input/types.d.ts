@@ -10,6 +10,6 @@ export type InputProps = {
   name: string
   placeholder?: string
   required?: boolean
-  state: InputState
+  state: InputState | undefined | any | void
   type: string
 } & InputHTMLAttributes<HTMLInputElement>
