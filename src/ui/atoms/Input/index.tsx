@@ -18,6 +18,7 @@ const Input: React.FC<InputProps> = ({
     isValid,
     label,
     name,
+    onChange,
     placeholder,
     required,
     state = "inactive",
@@ -28,7 +29,7 @@ const Input: React.FC<InputProps> = ({
     return (
         <CustomInputContainer>
             <label
-                htmlFor="input"
+                htmlFor={name}
             >
                 <LabelContainer>
                     <Text
@@ -53,6 +54,7 @@ const Input: React.FC<InputProps> = ({
                     name={name}
                     placeholder={placeholder}
                     required={required}
+                    onChange={onChange}
                     state={state}
                     type={type}
                     {...otherProps}

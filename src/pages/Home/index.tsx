@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import Sidebar from "../../components/Sidebar";
 import Step from "../../components/Step";
 import ThankYou from "../../components/ThankYou";
@@ -38,6 +39,7 @@ type HomeProps = {
 
 const Home: React.FC<HomeProps> = ({ mediaIsPhone }) => {
 
+    const userData = useSelector((state: any) => state.userData)
     const [selectedStep, setSelectedStep] = useState(0);
     const [step, setStep] = useState<StepType>(steps[0])
 

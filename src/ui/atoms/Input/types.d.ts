@@ -8,8 +8,10 @@ export type InputProps = {
   isValid?: boolean
   label: string
   name: string
+  onChange: any
   placeholder?: string
   required?: boolean
   state: InputState | undefined | any | void
   type: string
+  value: string | null
 } & InputHTMLAttributes<HTMLInputElement>

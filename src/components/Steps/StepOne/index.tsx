@@ -1,11 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setConstantValue } from "typescript";
-import Container from "../../../ui/atoms/Container";
 import Input from "../../../ui/atoms/Input";
-import Text from "../../../ui/atoms/Text";
 import { SAVE_EMAIL, SAVE_NAME, SAVE_PHONE } from "../../../utils/redux/slices/userData";
-import { RegexTypes, validate } from "../../../utils/validate/validateRules";
+import { ErrorsTypes, validate } from "../../../utils/validate/validateRules";
 import { CustomForm } from "./style";
 
 
@@ -13,84 +10,86 @@ const StepOne: React.FC = () => {
 
     const dispatch = useDispatch();
 
-    const [name, setName] = useState<string | null>(null);
-    const [email, setEmail] = useState<string | null>(null);
-    const [phone, setPhone] = useState<string | null>(null);
+    type FormValuesType = {
+        userName: string,
+        email: string,
+        phone: string
+    }
 
-    const [isNameValid, setIsNameValid] = useState<boolean>(false)
-    const [isEmailValid, setIsEmailValid] = useState<boolean>(false)
-    const [isPhoneValid, setIsPhoneValid] = useState<boolean>(false)
+    const initialValues: FormValuesType = {
+        userName: "",
+        email: "",
+        phone: ""
+    }
+
+    const [formValues, setFormValues] = useState<FormValuesType>(initialValues)
+    const [formErrors, setFormErrors] = useState<ErrorsTypes>({
+        userName: null,
+        email: null,
+        phone: null
+    })
+    const [isValid, setIsValid] = useState<boolean>(false)
+
+    const { userName, email, phone } = formValues;
+
+    const handleChange = (e: any) => {
+        setFormValues({
+            ...formValues,
+            [e.target.name]: e.target.value
+        })
+    }
 
     useEffect(() => {
-        if (isNameValid && isEmailValid && isPhoneValid) {
-            dispatch(SAVE_NAME)
-            dispatch(SAVE_EMAIL);
-            dispatch(SAVE_PHONE)
-        }
-        console.log(name, email, phone, isNameValid, isEmailValid, isPhoneValid)
-    }, [name, email, phone])
-
-    useEffect(() => {
-        const isValid = validate(RegexTypes.NAME, name);
-        if (isValid) {
-            setIsNameValid(true);
-
+        setFormErrors(validate(formValues));
+        if (formValues.userName !== "" && formValues.email !== "" && formValues.phone !== "" && (Object.keys(formErrors).length === 0)) {
+            setIsValid(true)
         } else {
-            setIsNameValid(false)
+            setIsValid(false)
         }
-    }, [name])
+    }, [formValues])
 
     useEffect(() => {
-        const isValid = validate(RegexTypes.EMAIL, email);
         if (isValid) {
-            setIsEmailValid(true);
-
-        } else {
-            setIsEmailValid(false)
+            dispatch(SAVE_NAME(userName));
+            dispatch(SAVE_EMAIL(email));
+            dispatch(SAVE_PHONE(phone));
         }
-    }, [email])
-
-    useEffect(() => {
-        const isValid = validate(RegexTypes.PHONE, phone);
-        if (isValid) {
-            setIsPhoneValid(true)
-
-        } else {
-            setIsPhoneValid(false)
-        }
-    }, [phone])
+    }, [isValid])
 
     return (
         <CustomForm>
             <Input
-                id="firstName"
+                id="userName"
                 label="Name"
-                name="firstName"
-                onChange={(e) => setName(e.target.value)}
+                name="userName"
+                onChange={handleChange}
                 placeholder="e.g. Stephen King"
                 state="inactive"
                 type="text"
-            // helpText={isNameValid ? null : "This is required field"}
+                value={userName}
+                helpText={formErrors.userName}
             />
             <Input
-                id="emailAddress"
+                id="email"
                 label="Email address"
-                name="emailAddress"
-                onChange={(e) => setEmail(e.target.value)}
+                name="email"
                 placeholder="e.g. stephenking@lorem.com"
                 state="inactive"
+                onChange={handleChange}
                 type="text"
-            // helpText={setHelpText(email, isEmailValid)}
+                value={email}
+                helpText={formErrors.email}
             />
             <Input
-                id="phoneNumber"
+                id="phone"
                 label="Phone number"
-                name="phoneNumber"
-                onChange={(e) => setPhone(e.target.value)}
+                name="phone"
                 placeholder="+1 234 567 890"
+                onChange={handleChange}
                 state="inactive"
                 type="text"
-            // helpText={isPhoneValid ? null : "This is required field"}
+                value={phone}
+                helpText={formErrors.phone}
             />
 
         </CustomForm>
