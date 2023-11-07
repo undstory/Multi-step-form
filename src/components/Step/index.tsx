@@ -10,10 +10,7 @@ import { StepProps } from "./types";
 
 const Step: React.FC<StepProps> = ({ mediaIsPhone, step }) => {
 
-    // const { name, email, phone } = useSelector((state: any) => state.);
-
-    const { title, subtitle } = step;
-
+    const { title, subtitle, component } = step;
 
     return (
         <StepWrapper
@@ -42,7 +39,7 @@ const Step: React.FC<StepProps> = ({ mediaIsPhone, step }) => {
                 <Container
                     width="100%"
                 >
-                    <StepOne />
+                    {component}
                 </Container>
             </Container>
         </StepWrapper>

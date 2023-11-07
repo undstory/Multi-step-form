@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import { useSelector } from "react-redux";
 import Sidebar from "../../components/Sidebar";
 import Step from "../../components/Step";
+import StepTwo from "../../components/Steps";
+import StepOne from "../../components/Steps/StepOne";
 import ThankYou from "../../components/ThankYou";
 import Container from "../../ui/atoms/Container";
 import { withMediaQueries } from "../../ui/hoc/withMediaQueries";
@@ -12,25 +14,30 @@ import { MainContainer } from "../../utils/styles/style";
 export type StepType = {
     id: number,
     subtitle: string,
-    title: string
+    title: string,
+    component: ReactElement
 }
 
 const steps: StepType[] = [{
     id: 0,
     title: "Personal info",
-    subtitle: "Please provide your name, email address, and phone number."
+    subtitle: "Please provide your name, email address, and phone number.",
+    component: <StepOne />
 }, {
     id: 1,
     title: "Select your plan",
-    subtitle: "You have the option of monthly or yearly billing. "
+    subtitle: "You have the option of monthly or yearly billing. ",
+    component: <StepTwo />
 }, {
     id: 2,
     title: "Pick add-ons",
-    subtitle: "Add-ons help enhance your gaming experience. "
+    subtitle: "Add-ons help enhance your gaming experience. ",
+    component: <StepTwo />
 }, {
     id: 3,
     title: "Finishing up",
-    subtitle: "Double-check everything looks OK before confirming."
+    subtitle: "Double-check everything looks OK before confirming.",
+    component: <StepTwo />
 }]
 
 type HomeProps = {

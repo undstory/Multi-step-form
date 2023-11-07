@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-type DataUserState = {
-  name?: string | null
-  email?: string | null
-  phone?: string | null
+type InitialDataUserState = {
+  userName: null
+  email: null
+  phone: null
 }
 
-const initialState: DataUserState = {
-  name: null,
+const initialState: InitialDataUserState = {
+  userName: null,
   email: null,
   phone: null
 }
@@ -18,7 +18,7 @@ export const userDataSlice = createSlice({
   reducers: {
     SAVE_NAME: (state, action) => ({
       ...state,
-      name: action?.payload
+      userName: action?.payload
     }),
     SAVE_PHONE: (state, action) => ({
       ...state,

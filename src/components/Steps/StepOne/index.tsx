@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Input from "../../../ui/atoms/Input";
 import { SAVE_EMAIL, SAVE_NAME, SAVE_PHONE } from "../../../utils/redux/slices/userData";
 import { ErrorsTypes, validate } from "../../../utils/validate/validateRules";
@@ -9,6 +9,7 @@ import { CustomForm } from "./style";
 const StepOne: React.FC = () => {
 
     const dispatch = useDispatch();
+    const userData = useSelector((state: any) => state?.userData)
 
     type FormValuesType = {
         userName: string,
@@ -22,7 +23,7 @@ const StepOne: React.FC = () => {
         phone: ""
     }
 
-    const [formValues, setFormValues] = useState<FormValuesType>(initialValues)
+    const [formValues, setFormValues] = useState<any>(userData)
     const [formErrors, setFormErrors] = useState<ErrorsTypes>({
         userName: null,
         email: null,
@@ -39,22 +40,23 @@ const StepOne: React.FC = () => {
         })
     }
 
-    useEffect(() => {
-        setFormErrors(validate(formValues));
-        if (formValues.userName !== "" && formValues.email !== "" && formValues.phone !== "" && (Object.keys(formErrors).length === 0)) {
-            setIsValid(true)
-        } else {
-            setIsValid(false)
-        }
-    }, [formValues])
+    // useEffect(() => {
+    //     setFormErrors(validate(formValues));
+    //     if (formValues.userName !== "" && formValues.email !== "" && formValues.phone !== "" && (Object.keys(formErrors).length === 0)) {
+    //         setIsValid(true)
+    //     } else {
+    //         setIsValid(false)
+    //     }
+    //     console.log(userData)
+    // }, [formValues])
 
     useEffect(() => {
-        if (isValid) {
-            dispatch(SAVE_NAME(userName));
-            dispatch(SAVE_EMAIL(email));
-            dispatch(SAVE_PHONE(phone));
-        }
-    }, [isValid])
+
+        dispatch(SAVE_NAME(userName));
+        dispatch(SAVE_EMAIL(email));
+        dispatch(SAVE_PHONE(phone));
+
+    }, [formValues])
 
     return (
         <CustomForm>
